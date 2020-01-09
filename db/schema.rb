@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_155952) do
     t.string "kunyomi_1"
     t.string "kunyomi_2"
     t.string "meaning"
+    t.string "stroke_gif"
     t.bigint "kanji_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
