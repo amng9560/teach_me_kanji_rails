@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  onyomi_1: MyString
+  onyomi_2: MyString
+  kunyomi_1: MyString
+  kunyomi_2: MyString
+  meaning: MyString
+
+two:
+  symbol: MyString
+  onyomi_1: MyString
+  onyomi_2: MyString
+  kunyomi_1: MyString
+  kunyomi_2: MyString
+  meaning: MyString
