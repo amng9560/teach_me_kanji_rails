@@ -32,6 +32,6 @@ class CharactersController < ApplicationController
     end
 
     def allowed_params
-        params.permit(:title, :content)
+        params.permit(:symbol, :onyomi_1, :onyomi_2, :kunyomi_1, :kunyomi_2, :meaning, :stroke_gif)
     end
 end

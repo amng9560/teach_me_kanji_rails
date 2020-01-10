@@ -10,10 +10,6 @@ class KanjisController < ApplicationController
         render json: @kanji
     end
 
-    def update
-        @kanji.update(allowed_params)
-    end
-
     private
 
     def find_kanji
@@ -21,6 +17,6 @@ class KanjisController < ApplicationController
     end
 
     def allowed_params
-        params.permit(:title, :content)
+        params.permit(:onyomi, :kunyomi, :history)
     end
 end
