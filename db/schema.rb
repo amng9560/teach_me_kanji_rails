@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_155952) do
+ActiveRecord::Schema.define(version: 2020_01_10_144112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_words", force: :cascade do |t|
+    t.bigint "word_id", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_character_words_on_character_id"
+    t.index ["word_id"], name: "index_character_words_on_word_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "symbol"
@@ -37,5 +46,14 @@ ActiveRecord::Schema.define(version: 2020_01_09_155952) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "words", force: :cascade do |t|
+    t.string "word"
+    t.string "meaning"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "character_words", "characters"
+  add_foreign_key "character_words", "words"
   add_foreign_key "characters", "kanjis"
 end
