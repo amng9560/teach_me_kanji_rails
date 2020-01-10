@@ -16,7 +16,7 @@ class KanjisController < ApplicationController
         @kanji = Kanji.find(params[:id])
     end
 
-    def allowed_params
+    def kanji_params
         params.permit(:onyomi, :kunyomi, :history)
     end
 end
