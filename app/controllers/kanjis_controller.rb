@@ -1,5 +1,6 @@
 class KanjisController < ApplicationController
     before_action :find_kanji, only: [:show, :update, :destroy]
+    skip_before_action :authenticate_request
 
     def index
         @kanjis = Kanji.all

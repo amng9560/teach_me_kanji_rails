@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
     before_action :find_word, only: [:show, :update, :destroy]
+    skip_before_action :authenticate_request
     # before_action :find_character, only: [:index, :create]
 
     def index
@@ -25,6 +26,7 @@ class WordsController < ApplicationController
         if @word.characters.length != 0
             @word.save
         end
+        render json: @word
     end
 
     def update
