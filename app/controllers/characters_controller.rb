@@ -1,13 +1,8 @@
 class CharactersController < ApplicationController
     before_action :find_character, only: [:show, :update, :destroy]
-    # before_action :find_words, only: [:index, :create]
+    skip_before_action :authenticate_request
 
     def index
-        # if params[:symbol]
-        #     @characters = @words.characters.where(symbol: params[:symbol])
-        # else
-        #     @characters = @words.characters
-        # end
         @characters = Character.all
         render json: @characters, include: [:words]
     end
@@ -32,10 +27,6 @@ class CharactersController < ApplicationController
     end
 
     private
-    # def find_words
-    #     @words = Word.find(params[:word_id])
-    # end
-
     def find_character
         @character = Character.find(params[:id])
     end
