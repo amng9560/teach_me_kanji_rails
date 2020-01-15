@@ -1,8 +1,8 @@
 class CreateUserWords < ActiveRecord::Migration[6.0]
   def change
     create_table :user_words do |t|
-      t.user :references
-      t.word :references
+      t.references :user, null: false, foreign_key: true
+      t.references :word, null: false, foreign_key: true
 
       t.timestamps
     end

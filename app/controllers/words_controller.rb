@@ -1,7 +1,6 @@
 class WordsController < ApplicationController
     before_action :find_word, only: [:show, :update, :destroy]
     skip_before_action :authenticate_request
-    # before_action :find_character, only: [:index, :create]
 
     def index
         @words = Word.all
@@ -14,17 +13,32 @@ class WordsController < ApplicationController
 
     def create
         @word = Word.new(word_params)
-  
-        characters = @word.word.chars()
-        characters.each do |character|
-            character = Character.find_by(symbol: character)
-            if character
-                # byebug
-                @word.characters << character
+
+        if Word.exists?(word: @word.word)
+            word = Word.find_by(word: @word.word)
+            if params[:user_id]
+                UserWord.create(
+                    word_id: word.id, 
+                    user_id: params[:user_id]
+                )
             end
-        end
-        if @word.characters.length != 0
-            @word.save
+        else 
+            characters = @word.word.chars()
+            characters.each do |character|
+                character = Character.find_by(symbol: character)
+                if character
+                    @word.characters << character
+                end
+            end
+            if @word.characters.length != 0
+                @word.save
+                if params[:user_id]
+                    UserWord.create(
+                        word_id: @word.id, 
+                        user_id: params[:user_id]
+                    )
+                end
+            end
         end
         render json: @word
     end
@@ -39,9 +53,6 @@ class WordsController < ApplicationController
     end
 
     private
-    # def find_character
-    #     @character = Character.find(params[:character_id])
-    # end
 
     def find_word
         @word = Word.find(params[:id])
