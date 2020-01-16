@@ -12,35 +12,8 @@ class WordsController < ApplicationController
     end
 
     def create
-        @word = Word.new(word_params)
-
-        if Word.exists?(word: @word.word)
-            word = Word.find_by(word: @word.word)
-            if params[:user_id]
-                UserWord.create(
-                    word_id: word.id, 
-                    user_id: params[:user_id]
-                )
-            end
-        else 
-            characters = @word.word.chars()
-            characters.each do |character|
-                character = Character.find_by(symbol: character)
-                if character
-                    @word.characters << character
-                end
-            end
-            if @word.characters.length != 0
-                @word.save
-                if params[:user_id]
-                    UserWord.create(
-                        word_id: @word.id, 
-                        user_id: params[:user_id]
-                    )
-                end
-            end
-        end
-        render json: @word
+        word = Word.create_word(Word.new(word_params), params[:user_id])
+        render json: word
     end
 
     def update
