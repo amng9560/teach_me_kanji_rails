@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :quizzes
+  resources :questions
   resources :user_words
   resources :character_words
   resources :words
