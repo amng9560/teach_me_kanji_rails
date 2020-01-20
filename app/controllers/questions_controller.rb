@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    before_action :find_character, only: [:show, :update, :destroy]
+    before_action :find_question, only: [:show, :update, :destroy]
     skip_before_action :authenticate_request
 
     def index
@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     end
 
     private
-    def find_character
+    def find_question
         @question = Question.find(params[:id])
     end
 
