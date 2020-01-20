@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_234757) do
+ActiveRecord::Schema.define(version: 2020_01_20_011135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 2020_01_14_234757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "answer"
+    t.string "options", array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_quizzes_on_character_id"
+    t.index ["question_id"], name: "index_quizzes_on_question_id"
+  end
+
   create_table "user_words", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "word_id", null: false
@@ -74,6 +90,8 @@ ActiveRecord::Schema.define(version: 2020_01_14_234757) do
   add_foreign_key "character_words", "characters"
   add_foreign_key "character_words", "words"
   add_foreign_key "characters", "kanjis"
+  add_foreign_key "quizzes", "characters"
+  add_foreign_key "quizzes", "questions"
   add_foreign_key "user_words", "users"
   add_foreign_key "user_words", "words"
 end
