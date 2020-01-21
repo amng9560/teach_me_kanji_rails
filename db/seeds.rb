@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Quiz.destroy_all
+CharacterWord.destroy_all
+UserWord.destroy_all
+Word.destroy_all
 Question.destroy_all
 Character.destroy_all
 Kanji.destroy_all
@@ -84,7 +87,7 @@ question_10 = Question.create(answer: "分", options: ["分", "事", "社", "見
 question_11 = Question.create(answer: "子", options: ["場", "年", "言", "子"])
 question_12 = Question.create(answer: "日", options: ["人", "日", "出", "長"])
 question_13 = Question.create(answer: "女", options: ["日", "学", "話", "女"])
-question_14 = Question.create(answer: "本", options: ["火", "大", "本", "人"])
+question_14 = Question.create(answer: "大", options: ["火", "大", "本", "人"])
 question_15 = Question.create(answer: "年", options: ["年", "分", "事", "出"])
 question_16 = Question.create(answer: "火", options: ["言", "火", "社", "事"])
 
@@ -110,7 +113,7 @@ Quiz.create(question: question_10,character: 分)
 Quiz.create(question: question_11,character: 子)
 Quiz.create(question: question_12,character: 日)
 Quiz.create(question: question_13,character: 女)
-Quiz.create(question: question_14,character: 本)
+Quiz.create(question: question_14,character: 大)
 Quiz.create(question: question_15, character: 年)
 Quiz.create(question: question_16,character: 火)
 Quiz.create(question: question_17,character: 気)
