@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
     def index
         @questions = Question.all
-        render json: @questions, include: [:characters]
+        render json: @questions, include: [:character, :options]
     end
 
     def show
