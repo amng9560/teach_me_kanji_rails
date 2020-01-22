@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
-    has_many :quizzes
-    has_many :characters, through: :quizzes
+    has_one :quiz
+    has_one :character, through: :quiz
+    has_many :options
 end
