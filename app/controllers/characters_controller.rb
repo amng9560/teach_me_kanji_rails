@@ -8,7 +8,7 @@ class CharactersController < ApplicationController
     end
 
     def show
-        render json: @character
+        render json: @character, include: [:words]
     end
 
     def create
